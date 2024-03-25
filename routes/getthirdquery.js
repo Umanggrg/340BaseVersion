@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root1234',
-    database: 'ITEINERARY'
+    database: 'ADVENTURER'
 });
 
 router.post('/', (req, res) => {
@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
         } else {
             // Sending this query results back to the client.
             connection.query(
-                "SELECT * FROM Travel_Plan",
+                "SELECT * FROM Travel_Plan ORDER BY Rating DESC",
                 function (err, rows) {
                     if (rows === undefined) {
 
@@ -30,13 +30,12 @@ router.post('/', (req, res) => {
                         text = ""
                         for (let i = 0; i < rows.length; i++) {
                             text += rows[i].Plan_ID + ","
-                            text += rows[i].Region + ","
                             text += rows[i].Destination + ","
                             text += rows[i].Description + ","
                             text += rows[i].Defined_Landmarks + ","
                             text += rows[i].Total_Price + ","
                             text += rows[i].Season + ","
-                            text += rows[i].images + ","
+                            text += rows[i].Rating + ","
                             text += "\n";
                         }
                         return res.end(text);
