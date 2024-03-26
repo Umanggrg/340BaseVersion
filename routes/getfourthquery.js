@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root1234',
-    database: 'ADVENTURER'
+    database: 'ITEINERARY'
 });
 
 router.post('/', (req, res) => {
@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
         } else {
             // Sending this query results back to the client.
             connection.query(
-                "SELECT * FROM Travel_Plan ORDER BY Rating DESC",
+                "SELECT * FROM Flights WHERE HOUR(Departure_Time) < 12",
                 function (err, rows) {
                     if (rows === undefined) {
 
@@ -29,13 +29,15 @@ router.post('/', (req, res) => {
                         console.log(rows)
                         text = ""
                         for (let i = 0; i < rows.length; i++) {
+                            text += rows[i].Flight_ID + ","
                             text += rows[i].Plan_ID + ","
-                            text += rows[i].Destination + ","
-                            text += rows[i].Description + ","
-                            text += rows[i].Defined_Landmarks + ","
-                            text += rows[i].Total_Price + ","
-                            text += rows[i].Season + ","
-                            text += rows[i].Rating + ","
+                            text += rows[i].Airline + ","
+                            text += rows[i].Flight_Number + ","
+                            text += rows[i].Departure_Time + ","
+                            text += rows[i].Arrival_Time + ","
+                            text += rows[i].Departure_Airport + ","
+                            text += rows[i].Arrival_Airport + ","
+                            text += rows[i].images + ","
                             text += "\n";
                         }
                         return res.end(text);
