@@ -26,6 +26,7 @@ function updateHTML1(queryResults) {
         document.getElementById("TotalPrice00" + (i + 1)).innerHTML = "Total Price: " + rowData[5];
         document.getElementById("Season00" + (i + 1)).innerHTML = "Season: " + rowData[6];
 
+        document.getElementById("image00"+ (i + 1)).src = rowData[7].toString()
     }
 }
 
@@ -41,6 +42,8 @@ function updateHTML2(queryResults) {
         document.getElementById("TotalPrice00" + (i + 1)).innerHTML = "Checkout Date: " + rowData[5];
         document.getElementById("Season00" + (i + 1)).innerHTML = "Address: " + rowData[6];
 
+        document.getElementById("image00"+ (i + 1)).src = rowData[7].toString()
+
 
     }
 }
@@ -53,6 +56,7 @@ function updateHTML(queryResults) {
         document.getElementById("Defined_landmarks00" + (i + 1)).innerHTML = "Arrival Time: " + rowData[5];
         document.getElementById("TotalPrice00" + (i + 1)).innerHTML = "Departure Airport: " + rowData[6];
         document.getElementById("Season00" + (i + 1)).innerHTML = "Arrival Airport: " + rowData[7];
+        document.getElementById("image00"+ (i + 1)).src = rowData[8].toString()
     }
 }
 
